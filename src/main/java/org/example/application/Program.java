@@ -1,11 +1,12 @@
 package org.example.application;
 
-import org.example.boardgame.Position;
+import org.example.boardgame.Board;
+
 
 public class Program {
     static void main() {
-        Position pos = new Position(3,5);
+        Board board = new Board(8, 8);
 
-        System.out.println(pos);
+
     }
 }
