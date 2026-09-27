@@ -1,17 +1,16 @@
 package org.example.chess;
 
 import org.example.boardgame.Board;
-import org.example.boardgame.Position;
 import org.example.chess.chess.pieces.King;
 import org.example.chess.chess.pieces.Rook;
 
 public class ChessMatch {
 
-    private Board board;
+    private final Board board;
 
     public ChessMatch(){
         board = new Board(8, 8);
-        itialSetup();
+        initialSetup();
     }
 
     public ChessPiece[][] getPieces(){
@@ -25,9 +24,13 @@ public class ChessMatch {
         return mat;
     }
 
-    private void itialSetup(){
-        board.placePiece(new Rook(board, Color.WHITE), new Position(2,1));
-        board.placePiece(new King(board, Color.BLACK), new Position(0,4));
-        board.placePiece(new King(board, Color.WHITE), new Position(7,4));
+    private void placeNewPiece(char colum, int row, ChessPiece piece){
+        board.placePiece(piece, new ChessPosition(colum, row).toPosition());
+    }
+
+    private void initialSetup(){
+        placeNewPiece('b', 6,new Rook(board, Color.WHITE));
+        placeNewPiece('e', 8,new King(board, Color.BLACK));
+        placeNewPiece('e',1,new King(board, Color.WHITE));
     }
 }
