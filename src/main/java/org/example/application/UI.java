@@ -1,5 +1,6 @@
 package org.example.application;
 
+import org.example.chess.ChessException;
 import org.example.chess.ChessPiece;
 import org.example.chess.ChessPosition;
 import org.example.chess.Color;
@@ -27,6 +28,24 @@ public class UI {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
+
+    public static void clearScreen(){
+
+        try{
+            String os = System.getProperty("os.name");
+            if(os.contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+            }else{
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        }catch (Exception e){
+            throw new ChessException("Impossivel limpar a tela");
+        }
+
+    }
 
     public static ChessPosition readChessPosition(Scanner sc){
         try {
